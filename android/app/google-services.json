@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "281690032390",
+    "project_id": "monkeyapp-cea86",
+    "storage_bucket": "monkeyapp-cea86.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:281690032390:android:074e51e881ef1a1edb7687",
+        "android_client_info": {
+          "package_name": "com.example.flutter_lesson"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "281690032390-kiblk34otfssto9sin4qmic1u5htq9jf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD04pF0AxDiEQnYASXaMXm7e_8niM2lcks"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "281690032390-kiblk34otfssto9sin4qmic1u5htq9jf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
