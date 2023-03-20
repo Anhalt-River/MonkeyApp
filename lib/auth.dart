@@ -1,7 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_lesson/services/authUser.dart';
+import 'package:flutter_lesson/services/services.dart';
 
-class AuthPage extends StatelessWidget {
+class AuthPage extends StatefulWidget {
   const AuthPage({super.key});
+
+  @override
+  State<AuthPage> createState() => _AuthPageState();
+}
+
+class _AuthPageState extends State<AuthPage> {
+  bool sign = false;
+
+  AuthServices authServices = AuthServices();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  signIn() async {
+    UserModel? user = await authServices.SignIn(
+        emailController.text, passwordController.text);
+    return user;
+  }
+
+  signUp() async {
+    UserModel? user = await authServices.SignUp(
+        emailController.text, passwordController.text);
+    return user;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +53,7 @@ class AuthPage extends StatelessWidget {
               SizedBox(
                 width: MediaQuery.of(context).size.width * 0.8,
                 child: TextField(
+                  controller: emailController,
                   cursorColor: Colors.amber,
                   decoration: InputDecoration(
                     label: const Text(
@@ -54,6 +79,7 @@ class AuthPage extends StatelessWidget {
               SizedBox(
                 width: MediaQuery.of(context).size.width * 0.8,
                 child: TextField(
+                  controller: passwordController,
                   obscureText: true,
                   cursorColor: Colors.amber,
                   decoration: InputDecoration(
@@ -94,28 +120,24 @@ class AuthPage extends StatelessWidget {
                     ),
                     backgroundColor: MaterialStatePropertyAll(Colors.amber),
                   ),
-                  onPressed: () {
-                    // Navigator.pushNamed(context, '/home');
-                    Navigator.popAndPushNamed(context, '/home');
-                    const AlertDialog(
-                      title: Text(
-                        "Выполнен переход",
-                      ),
-                      backgroundColor: Colors.green,
-                    );
-                  },
-                  child: const Text("Sign In"),
+                  onPressed: () => sign == false ? signIn() : signUp(),
+                  child: sign == false
+                      ? const Text("Sign In")
+                      : const Text("Sign Up"),
                 ),
               ),
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.02,
               ),
               InkWell(
-                child: const Text(
-                  "Sign Up?",
-                  style: TextStyle(color: Colors.black54),
-                ),
-                onTap: () {},
+                child: sign == false
+                    ? const Text("Sign Up")
+                    : const Text("Sign In"),
+                onTap: () {
+                  setState(() {
+                    sign = !sign;
+                  });
+                },
               ),
             ],
           ),
