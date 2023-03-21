@@ -30,4 +30,10 @@ class AuthServices {
   Future LogOut() async {
     await _firebaseAuth.signOut();
   }
+
+  Stream<UserModel?> get currentUser {
+    // return _firebaseAuth.authStateChanges().map((User? user) => Г);
+    return _firebaseAuth.authStateChanges().map(
+        (User? user) => user != null ? UserModel.fromFirebase(user) : null);
+  }
 }
