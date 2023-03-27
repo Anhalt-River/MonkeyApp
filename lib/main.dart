@@ -1,7 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_lesson/home.dart';
-import 'package:flutter_lesson/services/services.dart';
+import 'home.dart';
+import 'services/services.dart';
 import 'auth.dart';
 import 'package:provider/provider.dart';
 

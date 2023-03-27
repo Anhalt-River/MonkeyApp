@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:flutter_lesson/services/services.dart';
+import 'services/services.dart';
 
 class MenuDrawer extends StatelessWidget {
   const MenuDrawer({super.key});
