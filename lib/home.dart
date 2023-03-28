@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'calendar.dart';
 import 'deal.dart';
 import 'drawer.dart';
+import 'deal_detail.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({
@@ -44,7 +45,7 @@ class _HomePageState extends State<HomePage> {
             ),
             title: Text(docs['name']),
             subtitle: Text(
-              docs['phone'].toString(),
+              docs['description'].toString(),
             ),
             leading: Image.network(
               docs['image'],
@@ -55,10 +56,10 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    // final list = [
-    //   listSearchWidget(context), // 0
-    //   const CalendarPage(), // 1
-    // ];
+    final list = [
+      // listSearchWidget(context), // 0
+      const CalendarPage(), // 1
+    ];
 
     AppBar appBarSearch = AppBar(
       centerTitle: true,
@@ -96,6 +97,36 @@ class _HomePageState extends State<HomePage> {
 
     return Scaffold(
       appBar: tittleAppBar ? appBarSearch : appBar,
+      drawer: const MenuDrawer(),
+      bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.amber,
+        selectedItemColor: Colors.white,
+        currentIndex: index,
+        items: const [
+          BottomNavigationBarItem(
+              icon: Icon(
+                Icons.list,
+              ),
+              label: "Список дел"),
+          BottomNavigationBarItem(
+              icon: Icon(
+                Icons.calendar_today,
+              ),
+              label: "Календарь")
+        ],
+        onTap: (value) {
+          setState(
+            () {
+              index = value;
+              if (index == 0) {
+                title = 'Список дел';
+              } else {
+                title = 'Календарь';
+              }
+            },
+          );
+        },
+      ),
       body: StreamBuilder(
           //Firestore переименован в FirebaseFirestore
           //В stream вытаскиваем целую коллекцию контактов и делаем снимок(копию)
