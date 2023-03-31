@@ -147,10 +147,57 @@ class _AddDealState extends State<AddDeal> {
                               _nameController.clear();
                               _descriptionController.clear();
                               _imageController.clear();
+                              Navigator.pop(context);
                             },
-                          ))
-                    ],
-                  )))),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: const [
+                                Text("Удалить"),
+                                Icon(Icons.delete),
+                              ],
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.01,
+                        ),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.08,
+                          child: ElevatedButton(
+                            style: elevatedButtonStyle,
+                            onPressed: () async {
+                              //Соединить и определить коллекцию
+                              CollectionReference deals = FirebaseFirestore.instance.collection('deals');
+                              //Далее через linq обновляем контакт
+                              //Обновить по названию документа
+                              await deals.doc(widget.documentFirebase.id).update(
+                                {
+                                  'name': _nameController.text,
+                                  'description': _descriptionController.text,
+                                  'image': _imageController.text,
+                                }
+                              );
+                              //Очищаем контроллеры
+                              _nameController.clear();
+                              _descriptionController.clear();
+                              _imageController.clear();
+                              Navigator.pop(context);
+                            },
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: const [
+                                Text('Обновить'),
+                                Icon(Icons.delete)
+                              ],
+                            )
+                          )
+                        ),
+                      ],
+                  )
+                )
+            )
+        ),
+        bottomNavigationBar: ListTile(),
     );
   }
 }
