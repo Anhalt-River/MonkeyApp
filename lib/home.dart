@@ -51,7 +51,17 @@ class _HomePageState extends State<HomePage> {
               docs['image'],
             ),
             trailing: const Icon(Icons.arrow_right),
-            onTap: () {}));
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: ((context) => AddDeal(
+                            documentFirebase: docs,
+                            name: docs['name'],
+                            description: docs['description'],
+                            image: docs['image'],
+                          ))));
+            }));
   }
 
   @override
@@ -150,6 +160,14 @@ class _HomePageState extends State<HomePage> {
               );
             }
           }),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: const Icon(
+          Icons.add,
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      
     );
 
     // Widget listSearchWidget(BuildContext context) {

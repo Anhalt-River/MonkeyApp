@@ -27,6 +27,7 @@ class _AddDealState extends State<AddDeal> {
   TextEditingController _nameController = TextEditingController();
   TextEditingController _descriptionController = TextEditingController();
   TextEditingController _imageController = TextEditingController();
+  var elevS = ElevatedButton.styleFrom(backgroundColor: Colors.amber);
   Deal deal = Deal();
 
   @override
@@ -68,19 +69,19 @@ class _AddDealState extends State<AddDeal> {
                           child: TextField(
                         controller: _nameController,
                         cursorColor: Colors.white,
-                        decoration: inputDecorationName,
+                        // decoration: InputDecoration(fillColor: Colors.green),
                       )),
                       Card(
                           child: TextField(
                         controller: _descriptionController,
                         cursorColor: Colors.white,
-                        decoration: inputDecorationDescription,
+                        // decoration: InputDecoration(fillColor: Colors.white),
                       )),
                       Card(
                           child: TextField(
                         controller: _imageController,
                         cursorColor: Colors.white,
-                        decoration: inputDecorationImage,
+                        // decoration: InputDecoration(fillColor: Colors.green),
                       )),
                       SizedBox(
                         height: MediaQuery.of(context).size.height * 0.02,
@@ -88,12 +89,12 @@ class _AddDealState extends State<AddDeal> {
                       SizedBox(
                         height: MediaQuery.of(context).size.height * 0.08,
                         child: ElevatedButton(
-                            style: elevatedButtonStyle,
+                            // style: ButtonStyle(),
                             onPressed: () async {
                               if (widget.invisible == true) {
-                                Fluttertoast.showToast(
-                                    msg:
-                                        "Нет добавлению! Только удаление или обновление!");
+                                // Fluttertoast.showToast(
+                                //     msg:
+                                //         "Нет добавлению! Только удаление или обновление!");
                               } else {
                                 deal.title = _nameController.text;
                                 deal.description = _descriptionController.text;
@@ -130,7 +131,7 @@ class _AddDealState extends State<AddDeal> {
                       SizedBox(
                           height: MediaQuery.of(context).size.height * 0.08,
                           child: ElevatedButton(
-                            style: elevatedButtonStyle,
+                            style: elevS,
                             onPressed: () async {
                               //Соединить и определить коллекцию
                               CollectionReference deals = FirebaseFirestore
@@ -148,6 +149,7 @@ class _AddDealState extends State<AddDeal> {
                               _descriptionController.clear();
                               _imageController.clear();
                             },
+                            child: Text("Удалить"),
                           ))
                     ],
                   )))),
